@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#002F48</color>
+    <color name="colorDivider">#e0e0e0</color>
+    <color name="grayLight">#C1C4C5</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="labelSubtitle">#FF292929</color>
+    <color name="labelCredits">#3D3D3D</color>
+    <color name="background">#E3E3E3</color>
+    <color name="colorGreenLight">#0F8C5B</color>
+    <color name="colorRedDark">#91060C</color>
+</resources>

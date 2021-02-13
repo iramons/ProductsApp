@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ProductsApp</string>
+
+    <!-- Screens-->
+    <string name="user">usuário</string>
+    <string name="password">Senha</string>
+    <string name="enter">Entrar</string>
+    <string name="keep_logged_in">manter conectado</string>
+    <string name="ops">Ops</string>
+    <string name="app_logo">Estadão logo</string>
+    <string name="notice">Notícia</string>
+
+    <!-- Error messages -->
+    <string name="error_no_internet_connection">No internet connection</string>
+    <string name="error_timeout_connection">Timeout connection</string>
+    <string name="error_default">Alguma coisa deu errado. Tente novamente mais tarde.</string>
+    <string name="http_code_202">Falha na comunicação, por favor tente novamente mais tarde</string>
+    <string name="http_code_201">Recurso criado com sucesso.</string>
+    <string name="http_code_204">Data not found.</string>
+    <string name="http_code_400">Ocorreu um erro na validação de alguma regra.</string>
+    <string name="http_code_401">Erro na autenticação.</string>
+    <string name="http_code_404">Nenhum resultado encontrado.</string>
+    <string name="http_code_500">Falha na comunicação, por favor tente novamente mais tarde.</string>
+    <string name="products">Produtos</string>
+    <string name="product_image">Product image</string>
+    <string name="cash_item">Cash item</string>
+    <string name="spotlight_image">Spotlight image</string>
+</resources>

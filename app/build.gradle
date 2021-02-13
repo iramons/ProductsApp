@@ -1,0 +1,162 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "br.com.productsapp"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            debuggable false // always false when send to GooglePlay
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+        staging {
+            initWith debug
+            applicationIdSuffix ".debugStaging"
+        }
+    }
+
+    flavorDimensions 'environment'
+
+    productFlavors {
+        // environments
+        development {
+            dimension 'environment'
+            buildConfigField("String", 'BASE_URL', "\"https://7hgi9vtkdc.execute-api.sa-east-1.amazonaws.com\"")
+        }
+        homologation {}
+        production {}
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures{
+        dataBinding = true
+        viewBinding = true
+    }
+}
+
+dependencies {
+
+    // Kotlin
+    def kotlin_version = '1.4.30'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // Android X
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    // CoroutineWorker
+    def work_version = '2.5.0'
+    implementation "androidx.work:work-runtime-ktx:$work_version"
+    androidTestImplementation "androidx.work:work-testing:$work_version"
+
+    // Lifecycle
+    def lifecycle_version = '2.2.0'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    // Coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.8'
+
+    // Material Design
+    def material_version = '1.3.0'
+    implementation "com.google.android.material:material:$material_version"
+
+    // Room
+    def room_version = '2.3.0-beta01'
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-testing:$room_version"
+
+    // Data Binding
+    kapt 'com.android.databinding:compiler:3.1.4'
+
+    // Dagger 2
+    def dagger2_version = '2.27'
+    api "com.google.dagger:dagger:$dagger2_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger2_version"
+    api "com.google.dagger:dagger-android:$dagger2_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger2_version"
+    api "com.google.dagger:dagger-android-support:$dagger2_version"
+    kapt "com.google.dagger:dagger-android-support:$dagger2_version"
+
+    // Retrofit 2
+    def retrofit_version = '2.8.1'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // Okhttp3
+    def okHttp3_version = '4.3.1'
+    implementation "com.squareup.okhttp3:okhttp:$okHttp3_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3_version"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:$okHttp3_version"
+
+    // Glide
+    def glide_version = '4.11.0'
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    // Facebook-Shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.1.0'
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Fast Android networking
+    implementation 'com.amitshekhar.android:android-networking:1.0.2'
+
+    // Others
+    implementation "com.github.haroldadmin:NetworkResponseAdapter:4.0.1"
+
+    // to Sqlite explore http://facebook.github.io/stetho
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+
+    // Mockito
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    testImplementation'android.arch.core:core-testing:1.1.1'
+
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
