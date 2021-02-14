@@ -6,7 +6,6 @@ import br.com.productsapp.util.StrictModeManager
 import com.bumptech.glide.GlideBuilder
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.facebook.stetho.Stetho
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import kotlinx.coroutines.runBlocking
@@ -49,8 +48,6 @@ class BaseApp: DaggerApplication() {
 
         runBlocking {
             if (BuildConfig.DEBUG) {
-                /** Stetho: For initialize put in Chrome -> chrome://inspect/#devices **/
-                Stetho.initializeWithDefaults(applicationContext)
                 Timber.plant(Timber.DebugTree())
             }
             GlideBuilder().setDefaultRequestOptions(glideOptions)

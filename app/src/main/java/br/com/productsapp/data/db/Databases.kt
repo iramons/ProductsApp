@@ -26,5 +26,12 @@ interface Databases {
         const val description: String = "description"
     }
 
+    object ProductsResponse {
+        const val TABLE_NAME: String = "all_products_table"
+
+        const val spotlight: String = "spotlight"
+        const val products: String = "products"
+        const val cash: String = "cash"
+    }
 
 }

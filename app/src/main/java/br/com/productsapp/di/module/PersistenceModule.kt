@@ -1,6 +1,7 @@
 package br.com.productsapp.di.module
 
 import androidx.annotation.NonNull
+import br.com.productsapp.data.dao.AllProductsDAO
 import br.com.productsapp.data.dao.CashDAO
 import br.com.productsapp.data.dao.ProductsDAO
 import br.com.productsapp.data.dao.SpotlightDAO
@@ -14,11 +15,11 @@ import javax.inject.Singleton
 @Module
 class PersistenceModule {
 
-//    @Binds
-//    @IntoMap
-//    @Singleton
-//    @AppRepository(AllProductsRepository::class)
-//    abstract fun bindAllProductsRepository(repository: AllProductsRepository): AllProductsRepository
+    @Provides
+    @Singleton
+    fun provideAllProductsDAO(@NonNull database: AppDatabase): AllProductsDAO {
+        return database.allProductsDAO()
+    }
 
     @Provides
     @Singleton
@@ -37,6 +38,5 @@ class PersistenceModule {
     fun provideCashDAO(@NonNull database: AppDatabase): CashDAO {
         return database.cashDAO()
     }
-
 
 }

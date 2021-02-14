@@ -90,12 +90,6 @@ class MainActivity : BaseActivity() {
                 else -> {}
             }
         })
-
-        fetchData()
-    }
-
-    private fun fetchData() {
-        viewModel.getAllProducts()
     }
 
     private fun setAdapterData(response: ProductsResponse?) {

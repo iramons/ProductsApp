@@ -1,24 +1,18 @@
 package br.com.productsapp.data.source.remote.service
 
-import br.com.productsapp.BuildConfig
-import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Inject
-import javax.inject.Singleton
+import androidx.annotation.WorkerThread
+import br.com.productsapp.data.model.ErrorResponse
+import br.com.productsapp.data.model.ProductsResponse
+import br.com.productsapp.data.source.remote.Resource
+import br.com.productsapp.util.APIPaths
+import com.haroldadmin.cnradapter.NetworkResponse
+import retrofit2.Call
+import retrofit2.http.*
 
-@Singleton
-class APIService @Inject constructor()  {
+interface APIService {
 
-        val api : APIClient by lazy {
-
-            val retrofit = Retrofit.Builder()
-                    .baseUrl(BuildConfig.BASE_URL)
-                    .addConverterFactory(MoshiConverterFactory.create())
-                    .addCallAdapterFactory(NetworkResponseAdapterFactory())
-                    .build()
-
-            return@lazy retrofit.create(APIClient::class.java)
-        }
+    @WorkerThread
+    @GET(APIPaths.products)
+    fun getAllProducts(): Call<ProductsResponse>
 
 }

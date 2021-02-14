@@ -5,9 +5,11 @@ import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import br.com.productsapp.BaseApp
 import br.com.productsapp.data.db.AppDatabase
-import br.com.productsapp.data.source.remote.service.ServiceGenerator
+import br.com.productsapp.data.source.remote.service.APIClient
+import br.com.productsapp.data.source.remote.service.APIService
 import br.com.productsapp.di.CustomViewModelFactory
 import br.com.productsapp.di.annotation.AppBaseApplication
+import br.com.productsapp.util.AppExecutors
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -48,7 +50,14 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideServiceGenerator(): ServiceGenerator {
-        return ServiceGenerator()
+    fun provideAPIService(): APIService {
+        return APIClient().service
     }
+
+    @Provides
+    @Singleton
+    fun provideAppExecutors(): AppExecutors {
+        return AppExecutors()
+    }
+
 }

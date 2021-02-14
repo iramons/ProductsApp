@@ -4,25 +4,32 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import br.com.productsapp.data.dao.AllProductsDAO
 import br.com.productsapp.data.dao.CashDAO
 import br.com.productsapp.data.dao.ProductsDAO
 import br.com.productsapp.data.dao.SpotlightDAO
 import br.com.productsapp.data.model.Cash
 import br.com.productsapp.data.model.Products
+import br.com.productsapp.data.model.ProductsResponse
 import br.com.productsapp.data.model.Spotlight
+import br.com.productsapp.util.Converters
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 @Database(
         entities = [
+            ProductsResponse::class,
             Spotlight::class,
             Products::class,
             Cash::class],
         exportSchema = false,
         version = 1
 )
+@TypeConverters(value = [(Converters::class)])
 abstract class AppDatabase : RoomDatabase() {
 
+    abstract fun allProductsDAO(): AllProductsDAO
     abstract fun productsDAO(): ProductsDAO
     abstract fun spotlightDAO(): SpotlightDAO
     abstract fun cashDAO(): CashDAO
@@ -57,7 +64,6 @@ abstract class AppDatabase : RoomDatabase() {
                 .also { INSTANCE = it }
         }
 
-        private val DB_CALLBACK = object : RoomDatabase.Callback() {
-        }
+        private val DB_CALLBACK = object : RoomDatabase.Callback() {}
     }
 }
